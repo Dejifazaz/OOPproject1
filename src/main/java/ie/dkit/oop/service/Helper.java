@@ -90,6 +90,17 @@ public class Helper {
         return copy;
     }
 
+    public static List<GameScore> filterVerified(List<GameScore> scores) {
+        ArrayList<GameScore> result = new ArrayList<>();
+        for (GameScore s : scores) {
+            if (s.isVerified()) {
+                result.add(s);
+            }
+        }
+        Collections.sort(result);
+        return result;
+    }
+
     public static void exportCSV(List<GameScore> scores, String path) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(path));
         try {
