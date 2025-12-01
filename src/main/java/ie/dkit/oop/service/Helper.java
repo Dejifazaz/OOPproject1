@@ -102,8 +102,7 @@ public class Helper {
     }
 
     public static void exportCSV(List<GameScore> scores, String path) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-        try {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
             for (GameScore s : scores) {
                 writer.write(s.getPlayerName() + "," +
                         s.getPlayerId() + "," +
@@ -114,8 +113,6 @@ public class Helper {
                         s.getSessionTimestamp().toString());
                 writer.newLine();
             }
-        } finally {
-            writer.close();
         }
     }
 }
